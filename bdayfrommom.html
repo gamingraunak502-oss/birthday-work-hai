@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mere Bete Ke Liye ❤️</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;min-height:100vh;
+ font-family:'Segoe UI',sans-serif;color:white;
+ background:radial-gradient(circle at top,#57204f,#21102f 55%,#090915);
+ display:flex;justify-content:center;align-items:center;
+ overflow-x:hidden;
+}
+
+.page{
+ display:none;width:min(92%,520px);min-height:75vh;
+ padding:32px 22px;text-align:center;
+ flex-direction:column;justify-content:center;align-items:center;
+ animation:enter .65s ease;
+}
+
+.page.active{display:flex}
+
+@keyframes enter{
+ from{opacity:0;transform:translateY(22px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+h1{font-size:clamp(30px,7vw,48px);color:#ffbadb;margin:15px 0}
+h2{color:#ffd4e8;font-size:27px}
+p{font-size:17px;line-height:1.8;color:#ffe8f3}
+
+.emoji{font-size:90px;animation:bounce 1.6s infinite}
+
+@keyframes bounce{
+ 50%{transform:translateY(-12px) rotate(3deg)}
+}
+
+button{
+ padding:14px 23px;margin:8px;border:0;border-radius:40px;
+ background:linear-gradient(100deg,#ff80b8,#ffd080);
+ color:#401333;font-size:16px;font-weight:700;
+ cursor:pointer;box-shadow:0 5px 24px #ff6cac45;
+ transition:.2s;
+}
+
+button:hover{transform:scale(1.05)}
+
+.secondary{background:#ffffff15;color:white;border:1px solid #ffadd4}
+
+.letter{
+ background:#ffffff10;border:1px solid #ffb7d455;
+ border-radius:22px;padding:22px;line-height:1.9;
+}
+
+.progress{
+ position:fixed;top:15px;left:0;width:100%;
+ text-align:center;font-size:12px;letter-spacing:3px;color:#ffd0e8;
+ z-index:10;
+}
+
+.heart{
+ position:fixed;bottom:-30px;pointer-events:none;
+ animation:float 5s linear forwards;z-index:20;
+}
+
+@keyframes float{
+ to{transform:translateY(-110vh) rotate(40deg);opacity:0}
+}
+
+.small{font-size:12px;color:#d5b6d5}
+
+/* Candles in front of ONE cake */
+.birthday-scene{
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ margin:20px 0;
+}
+
+.candles{
+ display:flex;
+ justify-content:center;
+ align-items:flex-end;
+ gap:12px;
+ font-size:48px;
+ position:relative;
+ z-index:2;
+}
+
+.candles span{
+ display:inline-block;
+ cursor:pointer;
+ user-select:none;
+ -webkit-tap-highlight-color:transparent;
+ transition:transform .2s;
+}
+
+.candles span:active{transform:scale(1.15)}
+
+.birthday-cake{
+ font-size:95px;
+ line-height:1.2;
+ margin-top:-8px;
+ position:relative;
+ z-index:1;
+ pointer-events:none;
+}
+
+/* Fan enters from the side */
+.fan-effect{
+ position:fixed;
+ left:-90px;
+ top:50%;
+ font-size:55px;
+ pointer-events:none;
+ z-index:99;
+ animation:fanMove 1.4s ease-in-out forwards;
+}
+
+@keyframes fanMove{
+ 0%{
+  left:-90px;
+  opacity:0;
+  transform:translateY(0) rotate(-20deg);
+ }
+ 20%{opacity:1}
+ 100%{
+  left:110%;
+  opacity:0;
+  transform:translateY(-20px) rotate(20deg);
+ }
+}
+
+/* Wind animation */
+.wind-effect{
+ position:fixed;
+ left:-160px;
+ top:48%;
+ font-size:28px;
+ white-space:nowrap;
+ pointer-events:none;
+ z-index:98;
+ animation:windMove 1.2s ease-out forwards;
+}
+
+@keyframes windMove{
+ 0%{left:-160px;opacity:0;transform:translateY(0)}
+ 20%{opacity:1}
+ 100%{left:110%;opacity:0;transform:translateY(-25px)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="progress" id="progress">
+ MAA KA PYAAR • 1 / 5
+</div>
+
+<!-- PAGE 1 -->
+<section class="page active" id="p1">
+ <div style="font-size:45px">✨ 🎁 ✨</div>
+ <p>MERI ZINDAGI KE SABSE PYAARE INSAN KE LIYE</p>
+
+ <h1>Mere Pyare Bete! ❤️</h1>
+
+ <p>Meri jaan, tumhare liye kuch special hai...</p>
+
+ <div class="emoji">🎁</div>
+
+ <p>Mumma ke pyaar se bhara ek chhota sa surprise dekhoge? 🥹</p>
+
+ <button onclick="go(2)">Mumma Ka Gift Kholo 💝 →</button>
+
+ <p class="small">Dher saara pyaar, sirf tumhari Mumma ki taraf se ❤️</p>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page" id="p2">
+ <div class="emoji">🥰</div>
+
+ <h1>Ek Chhota Sa Sawaal!</h1>
+
+ <p>Kya tum jaante ho ki tum Mumma ke liye kitne special ho?</p>
+
+ <button onclick="answer()">Haan Mumma, bahut special hoon ❤️</button>
+
+ <button class="secondary" onclick="answer()">Nahi Mumma, aap batao 🥹</button>
+
+ <p id="reply" style="display:none">
+ Tum meri duniya ho, beta! ❤️🥹<br>
+ Tum meri sabse pyaari dua aur meri zindagi ki khushi ho.
+ </p>
+
+ <button id="next2" style="display:none" onclick="go(3)">
+ Ek Aur Surprise Dekho →
+ </button>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page" id="p3">
+ <p>AAJ KA DIN MERE LIYE BAHUT KHAAS HAI</p>
+
+ <h1>Happy Birthday, Meri Jaan! 🎉</h1>
+
+ <h2>Meri Taraf Se Ek Wish, Beta! ✨</h2>
+
+ <p>
+ Apni aankhein band karo, ek pyaari si wish maango
+ aur kisi bhi candle par click karo! 🕯️
+ </p>
+
+ <div class="birthday-scene">
+
+  <div class="candles">
+   <span onclick="blow(this)" aria-label="Left candle">🕯️</span>
+   <span onclick="blow(this)" aria-label="Middle candle">🕯️</span>
+   <span onclick="blow(this)" aria-label="Right candle">🕯️</span>
+  </div>
+
+  <div class="birthday-cake">🎂</div>
+
+ </div>
+
+ <p id="wish">
+ Meri dua hai ki tumhari har khwahish poori ho, beta. ❤️
+ </p>
+
+ <button onclick="go(4)">Mumma Ke Dil Ki Baat Padho 💌 →</button>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page" id="p4">
+ <div style="font-size:65px">💌</div>
+
+ <h1>Mere Dil Ka Tukda ❤️</h1>
+
+ <div class="letter">
+  Mere sabse pyaare bete, ❤️<br><br>
+
+  Jis din tum meri zindagi mein aaye the,
+  us din meri duniya hi badal gayi thi.
+  Tumhari pehli muskurahat se lekar aaj tak,
+  tum meri zindagi ki sabse khoobsurat khushi ho. 🥹<br><br>
+
+  Shayad main har baar apne dil ki baat lafzon mein na keh paaun,
+  lekin beta, tum mere liye duniya ki har khushi se badhkar ho.
+  Tumhari muskurahat meri khushi hai aur tumhare aansu mere dil ko dard dete hain. ❤️<br><br>
+
+  Meri dua hai ki tum zindagi mein khoob aage badho,
+  tumhare saare sapne poore hon aur tumhe har kadam par khushiyan milen.
+  Bhagwan tumhe hamesha sehatmand, khush aur salamat rakhe. 🤲<br><br>
+
+  Zindagi mein kabhi mushkil waqt aaye,
+  toh yaad rakhna beta, tumhari Mumma ka pyaar hamesha tumhare saath hai.
+  Duniya chahe tumhara saath de ya na de,
+  meri duaayein aur mera pyaar kabhi tumhara saath nahi chhodenge. 🫂❤️<br><br>
+
+  Tum chahe kitne bhi bade ho jao,
+  meri nazron mein hamesha mere nanhe se bachche hi rahoge.
+  Tum meri jaan ho, meri khushi ho aur meri duniya ho. ❤️
+ </div>
+
+ <p>
+ Bhagwan tumhe har buri nazar se bachaye, meri jaan. 🤲❤️
+ </p>
+
+ <button onclick="go(5)">Mumma Ka Aakhri Surprise 🥹 →</button>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page" id="p5">
+ <div style="font-size:70px">🎉🎁❤️</div>
+
+ <h1>Mumma Loves You! ❤️</h1>
+
+ <div class="emoji">🫂</div>
+
+ <h2>Happy Birthday, Mere Bete!</h2>
+
+ <p>
+ Tum sirf mere bete nahi,<br>
+ tum meri zindagi ka sabse anmol tohfa ho. ❤️
+ </p>
+
+ <p>
+ Meri har dua mein tum ho,<br>
+ meri har khushi ki wajah tum ho.<br>
+ Tumhari khushi se badhkar mere liye kuch bhi nahi. 🥹
+ </p>
+
+ <h2>Mumma Ka Pyaar, Hamesha Tumhare Saath! ♾️</h2>
+
+ <button onclick="celebrate()">Mumma Ke Saath Celebrate Karo! 🎊</button>
+
+ <button class="secondary" onclick="resetSurprise()">Surprise Dobara Dekho ↻</button>
+
+ <p class="small">
+ Duniya ki saari khushiyan tumhe milen.<br>
+ Dher saara pyaar — Tumhari Mumma ❤️
+ </p>
+</section>
+
+<script>
+let current=1;
+
+function go(n){
+ document.getElementById('p'+current).classList.remove('active');
+
+ current=n;
+
+ document.getElementById('p'+current).classList.add('active');
+
+ document.getElementById('progress').textContent=
+ 'MAA KA PYAAR • '+current+' / 5';
+
+ window.scrollTo({top:0,behavior:'smooth'});
+
+ if(n===5) celebrate();
+}
+
+function answer(){
+ document.getElementById('reply').style.display='block';
+ document.getElementById('next2').style.display='inline-block';
+}
+
+let blown=false;
+
+function blow(candle){
+ if(candle.dataset.blown==='true') return;
+
+ candle.dataset.blown='true';
+ candle.textContent='💨';
+
+ /* Fan comes from the side */
+ const fan=document.createElement('div');
+ fan.className='fan-effect';
+ fan.textContent='🪭';
+ document.body.appendChild(fan);
+
+ setTimeout(()=>fan.remove(),1500);
+
+ /* Wind moves across the screen */
+ const wind=document.createElement('div');
+ wind.className='wind-effect';
+ wind.textContent='〰️〰️〰️ 💨';
+ document.body.appendChild(wind);
+
+ setTimeout(()=>wind.remove(),1300);
+
+ document.getElementById('wish').textContent=
+ 'Meri jaan, Bhagwan tumhari har wish poori kare aur tumhe hamesha khush rakhe. Mumma tumse bahut pyaar karti hai! ❤️🤲';
+
+ hearts(20);
+}
+
+function hearts(count){
+ for(let i=0;i<count;i++){
+  setTimeout(()=>{
+   let h=document.createElement('div');
+
+   h.className='heart';
+   h.textContent=['❤️','💕','✨','🎉','💖'][
+    Math.floor(Math.random()*5)
+   ];
+
+   h.style.left=Math.random()*100+'vw';
+   h.style.fontSize=(18+Math.random()*24)+'px';
+   h.style.animationDuration=(3+Math.random()*4)+'s';
+
+   document.body.appendChild(h);
+
+   setTimeout(()=>h.remove(),7500);
+  },i*100);
+ }
+}
+
+function celebrate(){
+ hearts(35);
+}
+
+function resetSurprise(){
+ document.querySelectorAll('.candles span').forEach(candle=>{
+  delete candle.dataset.blown;
+  candle.textContent='🕯️';
+ });
+
+ document.getElementById('wish').textContent=
+ 'Meri dua hai ki tumhari har khwahish poori ho, beta. ❤️';
+
+ document.getElementById('reply').style.display='none';
+ document.getElementById('next2').style.display='none';
+
+ go(1);
+}
+
+setInterval(()=>{
+ if(Math.random()>.5) hearts(1);
+},1800);
+</script>
+
+</body>
+</html>
+
